@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1
--- 生成日期: 2014-02-10 15:00:51
+-- 生成日期: 2014-02-11 15:06:58
 -- 服务器版本: 5.5.32
 -- PHP 版本: 5.5.6
 
@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   `aid` int(11) NOT NULL AUTO_INCREMENT,
   `mid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `pname` text CHARACTER SET utf8 NOT NULL,
+  `pname` text NOT NULL,
   PRIMARY KEY (`aid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `attendance`
@@ -44,21 +44,35 @@ INSERT INTO `attendance` (`aid`, `mid`, `pid`, `pname`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `files`
+--
+
+CREATE TABLE IF NOT EXISTS `files` (
+  `fid` int(11) NOT NULL AUTO_INCREMENT,
+  `filename` text NOT NULL,
+  `path` text NOT NULL,
+  `filesize` int(11) NOT NULL,
+  PRIMARY KEY (`fid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `meetings`
 --
 
 CREATE TABLE IF NOT EXISTS `meetings` (
   `mid` int(11) NOT NULL AUTO_INCREMENT,
-  `mtitle` text CHARACTER SET utf8 NOT NULL,
+  `mtitle` text NOT NULL,
   `mdate` date NOT NULL,
   `start` time NOT NULL,
   `end` time NOT NULL,
-  `content` longtext CHARACTER SET utf8 NOT NULL,
+  `content` longtext NOT NULL,
   `time_created` datetime NOT NULL,
   `time_modified` datetime NOT NULL,
   PRIMARY KEY (`mid`),
   UNIQUE KEY `mid` (`mid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `meetings`
@@ -75,9 +89,9 @@ INSERT INTO `meetings` (`mid`, `mtitle`, `mdate`, `start`, `end`, `content`, `ti
 
 CREATE TABLE IF NOT EXISTS `participants` (
   `pid` int(11) NOT NULL AUTO_INCREMENT,
-  `pname` text CHARACTER SET utf8 NOT NULL,
+  `pname` text NOT NULL,
   PRIMARY KEY (`pid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `participants`
