@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= '';
+$config['base_url']	= 'http://localhost/MeetingMinutes/CodeIgniter_2.1.4/';
 
 /*
 |--------------------------------------------------------------------------
