@@ -8,11 +8,12 @@ class Meetinglist extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('meetings');
 		$data['meetings']=$this->meetings->meetinglist($meeting_index);
+		$data['base_url']=base_url();
 		
 		 
 		$config['base_url'] = base_url().'index.php/meetinglist/index/';
 		$config['total_rows'] = $this->meetings->count_all();
-		$config['per_page'] = 20; 
+		$config['per_page'] = 10; 
 		$config['full_tag_open'] = '<div id="pagination">
 								<ul class="pagination">';
 		$config['full_tag_close'] = '</ul>

@@ -7,18 +7,17 @@ class Meetings extends CI_Model
 		$this->load->database();
 	}
 
-	public function user_insert($arr='')
+	public function insert($arr='')
 	{
-		# code...
 		$this->db->insert('meetings',$arr);
 	}
 
-	public function userselect($value='')
+	public function selectById($value=1)
 	{
-		$this->db->where('mtitle','李书楠');
+		$this->db->where('mid',$value);
 		$this->db->select('*');
 		$query=$this->db->get('meetings');
-		var_dump($query->result());
+		return $query->result();	
 	}
 	public function meetinglist($meeting_index=0)
 	{

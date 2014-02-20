@@ -25,10 +25,10 @@ class Page extends CI_Controller {
 		$this->load->model('testm');
 		$user=$this->testm->userselectall();
 		$num=count($user);
-		$pagenum=10;
+		$pagenum=5;
 
 		$config['total_rows']=$num;
-		$config['per_page']=$pagenum;
+		$config['per_page']=5;
 		$config['num_links']=2;
 		$config['base_url']='/MeetingMinutes/CodeIgniter_2.1.4/index.php/page/pagelist';
 

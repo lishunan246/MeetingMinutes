@@ -4,14 +4,17 @@
 						    <th>序号</th>
 						    <th>会议标题</th>
 						    <th>会议时间</th>
-						    <th>新建会议记录</th>
+						    <?php 
+						    echo ' <th><a href="'.$base_url.'index.php/editmeeting/index/">新建会议记录</a></th>';
+						    ?>
+						
 						  </tr>
 						  <?php foreach ($meetings as $meeting) {
 						  echo "<tr>
 						    <td>".$meeting->mid."</td>
 						    <td>".$meeting->mtitle."</td>
 						    <td>".$meeting->mdate."</td>
-						    <td>查看详情</td>
+						    <td><a href=".$base_url.'index.php/viewmeeting/index/'.$meeting->mid.">查看详情</a></td>
 						  </tr>";	
 						  }
 						  ?>
