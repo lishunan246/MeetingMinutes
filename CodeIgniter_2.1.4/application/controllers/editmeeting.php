@@ -77,4 +77,73 @@ class Editmeeting extends CI_Controller {
 		$this->load->view('meetingcreated');
 		$this->load->view('footer');
 	}
+
+	public function modify($mid=1)
+	{
+		$data['base_url']=base_url();
+		$data['meeting']=$this->meetings->selectById($mid);
+		$data['people']=$this->attendance->selectById($mid);
+		$data['all_people']=$this->participants->selectall();
+
+		$this->load->view('header',$data);
+		$this->load->view('modify');
+		$this->load->view('footer');
+	}
+
+	public function update($mid=1)
+	{
+		$data['base_url']=base_url();
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'zip|rar|7z';
+		$config['max_size'] = '1000000';
+		$config['overwrite'] = TRUE;
+
+		$this->load->library('upload', $config);
+
+		$this->upload->do_upload("file");
+		$data['display_errors']=$this->upload->display_errors('<p class="text-danger">','</p>');
+
+		if($data['display_errors'])
+		{
+			$havefile= $this->input->post('old_havefile', TRUE);
+			$filepath= $this->input->post('old_file', TRUE);
+		}
+		else
+		{
+			$havefile=1;
+			$filepath=base_url()."uploads/".$this->upload->data()['file_name'];
+		}
+
+		$arr = array('mtitle' => $this->input->post('mtitle', TRUE),
+			'mdate' => $this->input->post('mdate', TRUE),
+			'address' => $this->input->post('address', TRUE),
+			'start' => $this->input->post('start', TRUE),
+			'end' => $this->input->post('end', TRUE),
+			'content' => $this->input->post('content', TRUE),
+			'havefile'=>$havefile,
+			'file'=>$filepath
+		 );
+		
+		$this->meetings->update($arr,$mid);
+
+		$numOfPeople=$this->participants->count();
+		$data['mid']=$numOfMeeting=$this->meetings->count_all();
+
+		$this->attendance->delAttendanceByID($mid);
+		
+
+		for ($i=1; $i <=$numOfPeople ; $i++) 
+		{ 
+			if($this->input->post($i, TRUE))
+			{		
+				$arr = array('mid' => $numOfMeeting,'pid'=>$i,'pname'=>$this->participants->getNameByID($i) );
+				$this->attendance->insert($arr);
+			}
+		}
+		
+
+		$this->load->view('header',$data);
+		$this->load->view('meetingupdated');
+		$this->load->view('footer');
+	}
 }

@@ -26,4 +26,8 @@ class Attendance extends CI_Model
 		$query=$this->db->get('attendance');
 		return count($query->result());
 	}
+	public function delAttendanceByID($value='')
+	{
+		$this->db->delete('attendance', array('mid' => $value));
+	}
 }

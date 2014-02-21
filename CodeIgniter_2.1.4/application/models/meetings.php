@@ -32,4 +32,10 @@ class Meetings extends CI_Model
 		$query=$this->db->get('meetings');
 		return count($query->result());
 	}
+
+	public function update($arr='',$mid)
+	{
+		$this->db->where('mid',$mid);
+		$this->db->update('meetings',$arr);
+	}
 }
