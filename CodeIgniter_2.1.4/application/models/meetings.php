@@ -23,6 +23,7 @@ class Meetings extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->limit(10,$meeting_index);
+		$this->db->order_by('mid','desc');
 		$query=$this->db->get('meetings');
 		return $query->result();	
 	}

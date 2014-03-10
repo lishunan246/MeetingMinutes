@@ -127,7 +127,8 @@ class Editmeeting extends CI_Controller {
 		$this->meetings->update($arr,$mid);
 
 		$numOfPeople=$this->participants->count();
-		$data['mid']=$numOfMeeting=$this->meetings->count_all();
+		$data['mid']=$mid;
+		$numOfMeeting=$this->meetings->count_all();
 
 		$this->attendance->delAttendanceByID($mid);
 		
@@ -136,7 +137,8 @@ class Editmeeting extends CI_Controller {
 		{ 
 			if($this->input->post($i, TRUE))
 			{		
-				$arr = array('mid' => $numOfMeeting,'pid'=>$i,'pname'=>$this->participants->getNameByID($i) );
+				$arr = array('mid' => $mid,'pid'=>$i,'pname'=>$this->participants->getNameByID($i) );
+				
 				$this->attendance->insert($arr);
 			}
 		}

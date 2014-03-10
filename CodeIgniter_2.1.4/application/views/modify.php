@@ -18,7 +18,7 @@ foreach ($people as $people) {
   </div><div class="form-group">
     <label for="mdate" class="col-sm-2 control-label">会议日期</label>
     <div class="col-sm-10">
-      <input type="date" class="form-control" id="mdate" name="mdate" placeholder="请输入会议日期" value=<?php echo "'".$meeting[0]->mdate."'";?>>
+      <input type="text" class="form-control" id="mdate" name="mdate" placeholder="请输入会议日期" value=<?php echo "'".$meeting[0]->mdate."'";?>>
     </div>
   </div>
   <div class="form-group">
@@ -30,13 +30,13 @@ foreach ($people as $people) {
   <div class="form-group">
     <label for="start" class="col-sm-2 control-label">开始时间</label>
     <div class="col-sm-10">
-      <input type="time" class="form-control" id="start" name="start" placeholder="请输入会议开始时间" value=<?php echo "'".$meeting[0]->start."'";?>>
+      <input type="text" class="form-control" id="start" name="start" placeholder="请输入会议开始时间" value=<?php echo "'".$meeting[0]->start."'";?>>
     </div>
   </div>
   <div class="form-group">
     <label for="end" class="col-sm-2 control-label">结束时间</label>
     <div class="col-sm-10">
-      <input type="time" class="form-control" id="end" name="end" placeholder="请输入会议结束时间" value=<?php echo "'".$meeting[0]->end."'";?>>
+      <input type="text" class="form-control" id="end" name="end" placeholder="请输入会议结束时间" value=<?php echo "'".$meeting[0]->end."'";?>>
     </div>
   </div>
 
@@ -96,3 +96,6 @@ foreach ($people as $people) {
     </div>
   </div>
 </form>
+
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
+<script src=<?php echo '"'.$base_url.'js/editmeeting.js"';?>></script>

@@ -18,6 +18,8 @@
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<!--masked input-->
+<script src=<?php echo '"'.$base_url.'js/jquery.maskedinput.js"';?>></script>
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>

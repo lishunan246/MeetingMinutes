@@ -12,6 +12,7 @@ class Viewmeeting extends CI_Controller {
 		$data['base_url']=base_url();
 		$data['meeting']=$this->meetings->selectById($mid);
 		$data['people']=$this->attendance->selectById($mid);
+		
 		$data['content']=auto_typography($data['meeting'][0]->content);
 
 		$this->load->view('header',$data);
