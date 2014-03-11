@@ -4,16 +4,21 @@ class Editmeeting extends CI_Controller {
 
 	function __construct()
 	{
-		# code...
 		parent::__construct();
 		$this->load->model('meetings');
 		$this->load->model('attendance');
 		$this->load->model('participants');
 		$this->load->helper('url');
+		$this->load->library('session');			
 	}
 
 	public function index($mid=1)
 	{
+		if(!$this->session->userdata('isAdmin'))
+		{
+			$this->login();
+			return false;
+		}
 		
 		$data['people']=$this->participants->selectall();
 		$data['base_url']=base_url();
@@ -25,6 +30,12 @@ class Editmeeting extends CI_Controller {
 	}
 	public function create()
 	{
+		if(!$this->session->userdata('isAdmin'))
+		{
+			$this->login();
+			return false;
+		}
+
 		$data['base_url']=base_url();
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'zip|rar|7z';
@@ -80,6 +91,12 @@ class Editmeeting extends CI_Controller {
 
 	public function modify($mid=1)
 	{
+		if(!$this->session->userdata('isAdmin'))
+		{
+			$this->login();
+			return false;
+		}
+
 		$data['base_url']=base_url();
 		$data['meeting']=$this->meetings->selectById($mid);
 		$data['people']=$this->attendance->selectById($mid);
@@ -92,6 +109,12 @@ class Editmeeting extends CI_Controller {
 
 	public function update($mid=1)
 	{
+		if(!$this->session->userdata('isAdmin'))
+		{
+			$this->login();
+			return false;
+		}
+
 		$data['base_url']=base_url();
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'zip|rar|7z';
@@ -148,4 +171,31 @@ class Editmeeting extends CI_Controller {
 		$this->load->view('meetingupdated');
 		$this->load->view('footer');
 	}
+
+	public function login()
+	{
+		$data['base_url']=base_url();
+
+		$this->load->view('header',$data);
+		$this->load->view('login');
+		$this->load->view('footer');
+	}
+
+	public function validate()
+	{
+		if(($this->input->post('user', TRUE)=='root')&&($this->input->post('password', TRUE)=='root'))
+		{
+			$this->session->set_userdata('isAdmin', 1);
+			$this->index();
+		}
+			
+		else
+			$this->index();
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+	}
 }
+
