@@ -9,7 +9,7 @@ class Meetinglist extends CI_Controller {
 		$this->load->model('meetings');
 		$data['meetings']=$this->meetings->meetinglist($meeting_index);
 		$data['base_url']=base_url();
-		
+		var_dump(base_url());		
 		 
 		$config['base_url'] = base_url().'index.php/meetinglist/index/';
 		$config['total_rows'] = $this->meetings->count_all();

@@ -27,7 +27,7 @@ class Participants extends CI_Model
 		$this->db->where('pid',$value);
 		$this->db->select('*');
 		$query=$this->db->get('participants');
-		
-		return $query->result()[0]->pname;
+		$result=$query->result();
+		return $result[0]->pname;
 	}
 }

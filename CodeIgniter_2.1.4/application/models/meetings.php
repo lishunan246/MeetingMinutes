@@ -45,7 +45,8 @@ class Meetings extends CI_Model
 		$this->db->where('mid',$value);
 		$this->db->select('*');
 		$query=$this->db->get('meetings');
-		$result=$query->result()[0];
+		$temp=$query->result();
+		$result=$temp[0];
 
 		if($result->havefile)
 			unlink($result->path);

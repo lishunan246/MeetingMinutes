@@ -55,7 +55,8 @@ class Editmeeting extends CI_Controller {
 		else
 		{
 			$havefile=1;
-			$filepath=base_url()."uploads/".$this->upload->data()['file_name'];
+			$temp=$this->upload->data();
+			$filepath=base_url()."uploads/".$temp['file_name'];
 		}
 
 		$arr = array('mtitle' => $this->input->post('mtitle', TRUE),
@@ -134,8 +135,11 @@ class Editmeeting extends CI_Controller {
 		else
 		{
 			$havefile=1;
-			$filepath=base_url()."uploads/".$this->upload->data()['file_name'];
+			$temp=$this->upload->data();
+			$filepath=base_url()."uploads/".$temp['file_name'];
 		}
+
+		
 
 		$arr = array('mtitle' => $this->input->post('mtitle', TRUE),
 			'mdate' => $this->input->post('mdate', TRUE),
@@ -145,7 +149,7 @@ class Editmeeting extends CI_Controller {
 			'content' => $this->input->post('content', TRUE),
 			'havefile'=>$havefile,
 			'file'=>$filepath,
-			'path'=>$this->upload->data()['full_path']
+			'path'=>$temp['full_path']
 		 );
 		
 		$this->meetings->update($arr,$mid);
